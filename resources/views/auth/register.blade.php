@@ -44,26 +44,26 @@
                         <div class="sm:col-span-3">
                             <x-inputs.basic-select name="affiliation">
                                 <x-slot name="label">Affiliation</x-slot>
-                                <option>Undergraduate</option>
+                                <option value="Undergraduate">Undergraduate</option>
                                 <option disabled>---</option>
                                 <option disabled>Graduate</option>
-                                <option>Arts &amp; Sciences</option>
-                                <option>Brown School</option>
-                                <option>McKelvey School of Engineering</option>
-                                <option>Olin Business School</option>
-                                <option>Sam Fox School of Design &amp; Visual Arts</option>
-                                <option selected>School of Law</option>
-                                <option>School of Medicine</option>
+                                <option value="Arts & Sciences">Arts &amp; Sciences</option>
+                                <option value="Brown School">Brown School</option>
+                                <option value="McKelvey School of Engineering">McKelvey School of Engineering</option>
+                                <option value="Olin Business School">Olin Business School</option>
+                                <option value="Sam Fox School of Design &  Visual Arts">Sam Fox School of Design &amp; Visual Arts</option>
+                                <option value="School of Law" selected>School of Law</option>
+                                <option value="School of Medicine">School of Medicine</option>
                                 <option disabled>---</option>
-                                <option>Alumni</option>
+                                <option value="Alumni">Alumni</option>
                             </x-inputs.basic-select>
                         </div>
 
                         <div class="sm:col-span-3">
                             <x-inputs.basic-select name="current_location">
                                 <x-slot name="label">Current Location</x-slot>
-                                <option selected>St. Louis City/County</option>
-                                <option>Other</option>
+                                <option value="St. Louis City/County" selected>St. Louis City/County</option>
+                                <option value="Other">Other</option>
                             </x-inputs.basic-select>
                         </div>
                     </div>

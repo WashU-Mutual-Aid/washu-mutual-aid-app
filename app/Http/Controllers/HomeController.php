@@ -24,7 +24,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $aids = Aid::all();
-        return view('home', compact('aids'));
+        $requests = Aid::with('user')->get();
+        return view('home', compact('requests'));
     }
 }

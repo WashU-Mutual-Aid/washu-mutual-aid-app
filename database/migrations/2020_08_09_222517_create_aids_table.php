@@ -20,6 +20,7 @@ class CreateAidsTable extends Migration
             $table->text('request');
             $table->integer('amount');
             $table->date('needed_by');
+            $table->boolean('require_account')->default(true);
             $table->timestamps();
         });
     }

@@ -4,18 +4,30 @@
 @endsection
 @section('content')
     <div class="bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
-        <div class="sm:mx-auto sm:w-full sm:max-w-md">
+        <div class="sm:mx-auto sm:w-full sm:max-w-lg md:max-w-2xl">
             <div class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
                 <form method="POST" action="{{ route('register') }}">
                     @csrf
-                    <div>
-                        <x-inputs.text
-                            name="name"
-                            placeholder="Jane Wilson"
-                            required
-                        >
-                            <x-slot name="label">Name</x-slot>
-                        </x-inputs.text>
+                    <div class="mt-6 grid grid-cols-1 row-gap-6 col-gap-4 sm:grid-cols-6">
+                        <div class="sm:col-span-3">
+                            <x-inputs.text
+                                name="first_name"
+                                placeholder="Jane"
+                                required
+                            >
+                                <x-slot name="label">First Name</x-slot>
+                            </x-inputs.text>
+                        </div>
+
+                        <div class="sm:col-span-3">
+                            <x-inputs.text
+                                name="last_name"
+                                placeholder="Wilson"
+                                required
+                            >
+                                <x-slot name="label">Last Name</x-slot>
+                            </x-inputs.text>
+                        </div>
                     </div>
                     <div class="mt-6">
                         <x-inputs.text
@@ -26,6 +38,34 @@
                         >
                             <x-slot name="label">Email Address</x-slot>
                         </x-inputs.text>
+                    </div>
+
+                    <div class="mt-6 grid grid-cols-1 row-gap-6 col-gap-4 sm:grid-cols-6">
+                        <div class="sm:col-span-3">
+                            <x-inputs.basic-select name="affiliation">
+                                <x-slot name="label">Affiliation</x-slot>
+                                <option>Undergraduate</option>
+                                <option disabled>---</option>
+                                <option disabled>Graduate</option>
+                                <option>Arts &amp; Sciences</option>
+                                <option>Brown School</option>
+                                <option>McKelvey School of Engineering</option>
+                                <option>Olin Business School</option>
+                                <option>Sam Fox School of Design &amp; Visual Arts</option>
+                                <option selected>School of Law</option>
+                                <option>School of Medicine</option>
+                                <option disabled>---</option>
+                                <option>Alumni</option>
+                            </x-inputs.basic-select>
+                        </div>
+
+                        <div class="sm:col-span-3">
+                            <x-inputs.basic-select name="current_location">
+                                <x-slot name="label">Current Location</x-slot>
+                                <option selected>St. Louis City/County</option>
+                                <option>Other</option>
+                            </x-inputs.basic-select>
+                        </div>
                     </div>
 
                     <div class="mt-6">

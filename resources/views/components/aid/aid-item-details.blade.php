@@ -1,11 +1,27 @@
 <div class="bg-white shadow overflow-hidden sm:rounded-lg">
-    <div class="px-4 py-5 border-b border-gray-200 sm:px-6">
-        <h3 class="text-lg leading-6 font-medium text-gray-900">
-            Mutual Aid Request
-        </h3>
-        <p class="mt-1 max-w-2xl text-sm leading-5 text-gray-500">
-            Contact {{ $aid->user->first_name }} by email if you can help.
-        </p>
+    <div class="px-4 py-5 border-b border-gray-200 sm:px-6 flex items-center justify-between">
+        <div>
+            <h3 class="text-lg leading-6 font-medium text-gray-900">
+                Mutual Aid Request
+            </h3>
+            <p class="mt-1 max-w-2xl text-sm leading-5 text-gray-500">
+                Contact {{ $aid->user->first_name }} by email if you can help.
+            </p>
+        </div>
+        @if($aid->user->id === optional(auth()->user())->id)
+            <div>
+                <form method="POST" action="{{ route('aid.destroy', $aid) }}">
+                    @csrf
+                    @method('delete')
+                    <button
+                        type="submit"
+                        class="inline-flex items-center p-3 border border-transparent text-sm leading-4 font-medium rounded text-white bg-red-600 hover:bg-red-500 focus:outline-none focus:border-red-700 focus:shadow-outline-red active:bg-red-700 transition ease-in-out duration-150"
+                    >
+                        Delete Request
+                    </button>
+                </form>
+            </div>
+        @endif
     </div>
     <div>
         <dl>

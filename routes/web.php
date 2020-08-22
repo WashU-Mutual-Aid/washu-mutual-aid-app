@@ -13,13 +13,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'HomepageController@index')->middleware('guest');
 
 Auth::routes(['verify' => true]);
+Route::middleware(['auth'])->group(function () {
+    Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/home', 'HomeController@index')->name('home');
-
-Route::view('/aid', 'aid.create')->name('aid.create');
-Route::post('/aid', 'AidController@store')->name('aid.store');
+    Route::get('/me/aid', 'UserAidController@index')->name('me.aid');
+    Route::view('/aid', 'aid.create')->name('aid.create');
+    Route::post('/aid', 'AidController@store')->name('aid.store');
+    Route::delete('/aid/{aid}', 'AidController@destroy')->name('aid.destroy');
+});

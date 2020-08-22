@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('title')
-    Dashboard
+    My Requests
 @endsection
 @section('content')
     <x-aid.requests :requests="$requests"></x-aid.requests>

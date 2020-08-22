@@ -35,7 +35,7 @@
                         <div class="flex items-center justify-between h-16 px-4 sm:px-0">
                             <div class="flex items-center">
                                 <div class="flex-shrink-0">
-                                    <img class="w-32 p-2" src="/images/logo.png" alt="Washington University logo">
+                                    <a href="/"><img class="w-32 p-2" src="/images/logo.png" alt="Washington University logo"></a>
                                 </div>
                                 <div class="hidden md:block">
                                     <div class="ml-10 flex items-baseline">
@@ -62,7 +62,7 @@
                                                 <div x-show="open" x-transition:enter="transition ease-out duration-100" x-transition:enter-start="transform opacity-0 scale-95" x-transition:enter-end="transform opacity-100 scale-100" x-transition:leave="transition ease-in duration-75" x-transition:leave-start="transform opacity-100 scale-100" x-transition:leave-end="transform opacity-0 scale-95" class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg">
                                                     <div class="py-1 rounded-md bg-white shadow-xs">
 {{--                                                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Your Profile</a>--}}
-{{--                                                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Settings</a>--}}
+                                                        <a href="{{route('me.aid')}}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">My Requests</a>
                                                         <form method="POST" action="{{ route('logout') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
                                                             @csrf
                                                             <button

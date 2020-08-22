@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Aid;
 use Illuminate\Http\Request;
 use App\Http\Requests\CreateAidRequest;
+use App\Http\Requests\DestroyAidRequest;
 
 class AidController extends Controller
 {
@@ -21,5 +22,12 @@ class AidController extends Controller
 
         return redirect(route('home'))
             ->with('status', 'Your request has been created');
+    }
+
+    public function destroy(DestroyAidRequest $request, Aid $aid)
+    {
+        $aid->delete();
+
+        return back()->with('status', 'Your request has been removed');
     }
 }

@@ -21,6 +21,7 @@ class CreateAidsTable extends Migration
             $table->date('needed_by');
             $table->boolean('require_account')->default(true);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -21,4 +21,5 @@ Auth::routes(['verify' => true]);
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/aid', 'AidController@create')->name('aid.create');
+Route::view('/aid', 'aid.create')->name('aid.create');
+Route::post('/aid', 'AidController@store')->name('aid.store');

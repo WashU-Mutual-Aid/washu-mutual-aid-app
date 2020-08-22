@@ -24,7 +24,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $requests = Aid::with('user')->get();
+        $requests = Aid::with('user', 'trixRichText')->orderBy('needed_by')->paginate(15);
         return view('home', compact('requests'));
     }
 }

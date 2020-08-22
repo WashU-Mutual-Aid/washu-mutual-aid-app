@@ -11,5 +11,8 @@
                 </li>
             @endforeach
         </ul>
+        <div class="">
+            {{ $requests->links() }}
+        </div>
     </div>
 @endsection

@@ -17,6 +17,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/main.css') }}" rel="stylesheet">
+    @stack('head')
 </head>
 <body>
     @if (session('status'))

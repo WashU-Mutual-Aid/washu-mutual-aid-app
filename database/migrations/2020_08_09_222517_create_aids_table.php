@@ -17,7 +17,6 @@ class CreateAidsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->string('summary');
-            $table->text('request');
             $table->integer('amount');
             $table->date('needed_by');
             $table->boolean('require_account')->default(true);

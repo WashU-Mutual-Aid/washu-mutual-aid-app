@@ -2,13 +2,15 @@
 'name',
 'type' => 'text',
 'required' => false,
-'placeholder' => ''
+'placeholder' => '',
+'wrap' => 'relative',
+'labelStyles' => ''
 ])
 
-<label for="{{ $name }}" class="block text-sm font-medium leading-5 text-gray-700">
+<label for="{{ $name }}" class="block text-sm font-medium leading-5 text-gray-700 {{ $labelStyles }}">
     {{ $label }}
 </label>
-<div class="mt-1 relative rounded-md shadow-sm">
+<div class="mt-1 {{ $wrap }} rounded-md shadow-sm">
     <input
         name="{{ $name }}"
         id="{{ $name }}"
@@ -24,7 +26,7 @@
             @enderror
         "
         @if ($type !== 'password')
-            value="{{ request($name) ?? old($name) }}"
+        value="{{ request($name) ?? old($name) }}"
         @endif
         {{ $attributes }}
     >

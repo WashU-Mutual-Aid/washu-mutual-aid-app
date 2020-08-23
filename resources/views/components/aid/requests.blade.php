@@ -1,4 +1,4 @@
-<div class="{{ $attributes['class'] }}">
+<div class="bg-white">
     <ul>
         @forelse($requests as $aid)
             <li @if(!$loop->first) class="border-t border-gray-200" @endif>

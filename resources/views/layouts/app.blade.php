@@ -34,10 +34,14 @@
                     <div class="border-b border-gray-700">
                         <div class="flex items-center justify-between h-16 px-4 sm:px-0">
                             <div class="flex items-center">
+                                <div class="flex-shrink-0">
+                                    <a href="{{ route('homepage') }}" class="px-3 py-2 rounded-md text-sm font-medium focus:outline-none focus:text-white focus:bg-gray-700 text-gray-300 hover:text-white hover:bg-gray-700">
+                                        Home
+                                    </a>
+                                </div>
                                 <div class="hidden md:block">
                                     <div class="ml-10 flex items-baseline">
-                                        <x-nav-link route="homepage" first>Home</x-nav-link>
-                                        <x-nav-link route="home">Give Aid</x-nav-link>
+                                        <x-nav-link route="home" first>Give Aid</x-nav-link>
                                         <x-nav-link route="aid.create">Request Aid</x-nav-link>
                                     </div>
                                 </div>
@@ -54,7 +58,7 @@
                                             <div @click.away="open = false" class="ml-3 relative" x-data="{ open: false }" x-cloak>
                                                 <div>
                                                     <button @click="open = !open" class="max-w-xs flex items-center text-sm rounded-full text-white focus:outline-none focus:shadow-solid" id="user-menu" aria-label="User menu" aria-haspopup="true" x-bind:aria-expanded="open" aria-expanded="true">
-                                                        <img class="h-8 w-8 rounded-full" src="https://unavatar.now.sh/{{auth()->user()->email}}" alt="">
+                                                        <img class="h-8 w-8 rounded-full" src="https://unavatar.now.sh/{{auth()->user()->email}}" alt="{{ auth()->user()->full_name }} Profile Photo">
                                                     </button>
                                                 </div>
                                                 <div x-show="open" x-transition:enter="transition ease-out duration-100" x-transition:enter-start="transform opacity-0 scale-95" x-transition:enter-end="transform opacity-100 scale-100" x-transition:leave="transition ease-in duration-75" x-transition:leave-start="transform opacity-100 scale-100" x-transition:leave-end="transform opacity-0 scale-95" class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg">
@@ -99,28 +103,41 @@
 
                 <div x-state:on="Open" x-state:off="closed" :class="{ 'block': open, 'hidden': !open }" class="hidden border-b border-gray-700 md:hidden">
                     <div class="px-2 py-3 sm:px-3">
-                        <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-white bg-gray-900 focus:outline-none focus:text-white focus:bg-gray-700">Dashboard</a>
-                        <a href="#" class="mt-1 block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700">Team</a>
-                        <a href="#" class="mt-1 block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700">Projects</a>
-                        <a href="#" class="mt-1 block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700">Calendar</a>
-                        <a href="#" class="mt-1 block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700">Reports</a>
+                        <x-mobile-nav-link route="home" first>Give Aid</x-mobile-nav-link>
+                        <x-mobile-nav-link route="aid.create">Request Aid</x-mobile-nav-link>
                     </div>
-                    <div class="pt-4 pb-3 border-t border-gray-700">
-                        <div class="flex items-center px-5">
-                            <div class="flex-shrink-0">
-                                <img class="h-10 w-10 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
-                            </div>
-                            <div class="ml-3">
-                                <div class="text-base font-medium leading-none text-white">Tom Cook</div>
-                                <div class="mt-1 text-sm font-medium leading-none text-gray-400">tom@example.com</div>
-                            </div>
+                        <div class="pb-3 border-t border-gray-700">
+                            @auth
+                                <div class="pt-4 flex items-center px-5">
+                                    <div class="flex-shrink-0">
+                                        <img class="h-10 w-10 rounded-full" src="https://unavatar.now.sh/{{auth()->user()->email}}" alt="{{ auth()->user()->full_name }} Profile Photo">
+                                    </div>
+                                    <div class="ml-3">
+                                        <div class="text-base font-medium leading-none text-white">{{ auth()->user()->full_name }}</div>
+                                        <div class="mt-1 text-sm font-medium leading-none text-gray-400">{{ auth()->user()->email }}</div>
+                                    </div>
+                                </div>
+                                <div class="mt-3 px-2" role="menu" aria-orientation="vertical" aria-labelledby="user-menu">
+                                    <x-mobile-nav-link route="me" first>My Profile</x-mobile-nav-link>
+                                    <x-mobile-nav-link route="me.aid">My Requests</x-mobile-nav-link>
+                                    <form method="POST" action="{{ route('logout') }}" class="block px-3 py-2 rounded-md text-base font-medium focus:outline-none focus:text-white focus:bg-gray-700 text-gray-300 hover:text-white hover:bg-gray-700 mt-1">
+                                        @csrf
+                                        <button
+                                            type="submit"
+                                            class="w-full text-left"
+                                        >
+                                            Sign Out
+                                        </button>
+                                    </form>
+                                </div>
+                            @endauth
+                            @guest
+                                <div class="mt-3 px-2" role="menu" aria-orientation="vertical" aria-labelledby="user-menu">
+                                    <x-mobile-nav-link route="login" first>Login</x-mobile-nav-link>
+                                    <x-mobile-nav-link route="register">Register</x-mobile-nav-link>
+                                </div>
+                            @endguest
                         </div>
-                        <div class="mt-3 px-2" role="menu" aria-orientation="vertical" aria-labelledby="user-menu">
-                            <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700" role="menuitem">Your Profile</a>
-                            <a href="#" class="mt-1 block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700" role="menuitem">Settings</a>
-                            <a href="#" class="mt-1 block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700" role="menuitem">Sign out</a>
-                        </div>
-                    </div>
                 </div>
             </nav>
             <header class="py-10">

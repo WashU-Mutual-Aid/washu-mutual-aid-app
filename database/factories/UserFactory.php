@@ -2,10 +2,12 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
+use App\Aid;
 use App\User;
 use Illuminate\Support\Arr;
 use Faker\Generator as Faker;
 use Illuminate\Support\Str;
+use Te7aHoudini\LaravelTrix\Models\TrixRichText;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,3 +42,8 @@ $factory->define(User::class, function (Faker $faker) {
         'remember_token' => Str::random(10),
     ];
 });
+
+$factory->afterCreating(User::class, function ($user, Faker $faker) {
+    $user->paymentProfiles()->create(['type' => 'venmo', 'username' => $faker->userName]);
+});
+

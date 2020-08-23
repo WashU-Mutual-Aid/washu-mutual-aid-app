@@ -41,4 +41,14 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasMany(Aid::class);
     }
+
+    public function paymentProfiles()
+    {
+        return $this->hasMany(PaymentProfile::class);
+    }
+
+    public function getPaymentProfileUsername($profile)
+    {
+        return optional($this->paymentProfiles->where('type', $profile)->first())->username;
+    }
 }

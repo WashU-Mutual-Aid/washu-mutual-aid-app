@@ -14,7 +14,7 @@ class DevelopmentSeeder extends Seeder
      */
     public function run()
     {
-        User::create([
+        $user = User::create([
             'first_name' => 'Skyler',
             'last_name' => 'Katz',
             'affiliation' => 'School of Law',
@@ -23,6 +23,9 @@ class DevelopmentSeeder extends Seeder
             'email_verified_at' => now(),
             'password' => Hash::make('password'),
         ]);
+
+        $user->paymentProfiles()->create(['type' => 'venmo', 'username' => 'skylerkatz']);
+
         factory(User::class, 30)->create();
         factory(Aid::class, 50)->create();
     }

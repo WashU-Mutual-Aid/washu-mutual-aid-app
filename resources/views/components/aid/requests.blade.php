@@ -5,7 +5,7 @@
                 <x-aid-row :aid="$aid"></x-aid-row>
             </li>
         @empty
-            <li class="w-1/2 m-auto">
+            <li class="w-1/2 m-auto pt-4">
                 <div class="rounded-md bg-blue-50 p-4 mb-4">
                     <div class="flex">
                         <div class="flex-shrink-0">

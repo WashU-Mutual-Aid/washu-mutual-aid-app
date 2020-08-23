@@ -5,7 +5,8 @@
                 Mutual Aid Request
             </h3>
             <p class="mt-1 max-w-2xl text-sm leading-5 text-gray-500">
-                Contact {{ $aid->user->first_name }} by email if you can help.
+                Can you help {{ $aid->user->first_name }}?
+{{--                Contact {{ $aid->user->first_name }} by email if you can help.--}}
             </p>
         </div>
         @if($aid->user->id === optional(auth()->user())->id)
@@ -31,7 +32,13 @@
                 </dt>
                 <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
                     {{ $aid->user->full_name }} (<span class="text-xs">{{ $aid->user->affiliation }}</span>)<br>
-                    <span class="text-gray-500 hover:text-gray-900"><a href="mailto:{{ $aid->user->email }}">{{ $aid->user->email }}</a></span>
+                    <span class="text-gray-500 hover:text-gray-900"><a href="mailto:{{ $aid->user->email }}" title="Email">Email - {{ $aid->user->email }}</a></span>
+                    @if($aid->user->getPaymentProfileUsername('venmo'))
+                        <br><span class="text-gray-500 hover:text-gray-900"><a href="https://venmo.com/{{ $aid->user->getPaymentProfileUsername('venmo') }}" target="_blank" title="Venmo">Venmo - @&ZeroWidthSpace;{{ $aid->user->getPaymentProfileUsername('venmo') }}</a></span>
+                    @endif
+                    @if($aid->user->getPaymentProfileUsername('paypal'))
+                        <br><span class="text-gray-500 hover:text-gray-900"><a href="https://paypal.me/{{ $aid->user->getPaymentProfileUsername('paypal') }}" target="_blank" title="PayPal">PayPal - {{ $aid->user->getPaymentProfileUsername('paypal') }}</a></span>
+                    @endif
                 </dd>
             </div>
             <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">

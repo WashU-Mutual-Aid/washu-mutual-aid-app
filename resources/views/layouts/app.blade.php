@@ -34,12 +34,10 @@
                     <div class="border-b border-gray-700">
                         <div class="flex items-center justify-between h-16 px-4 sm:px-0">
                             <div class="flex items-center">
-                                <div class="flex-shrink-0">
-                                    <a href="/"><img class="w-32 p-2" src="/images/logo.png" alt="Washington University logo"></a>
-                                </div>
                                 <div class="hidden md:block">
                                     <div class="ml-10 flex items-baseline">
-                                        <x-nav-link route="home" first>Dashboard</x-nav-link>
+                                        <x-nav-link route="homepage" first>Home</x-nav-link>
+                                        <x-nav-link route="home">Give Aid</x-nav-link>
                                         <x-nav-link route="aid.create">Request Aid</x-nav-link>
                                     </div>
                                 </div>
@@ -137,7 +135,7 @@
         <main class="-mt-32">
             <div class="max-w-7xl mx-auto pb-12 px-4 sm:px-6 lg:px-8">
                 <!-- Replace with your content -->
-                <div class="bg-gray-100 rounded-lg shadow px-5 py-6 sm:px-6">
+                <div class="bg-white rounded-lg shadow px-5 py-6 sm:px-6">
                     @yield('content')
                 </div>
                 <!-- /End replace -->

@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'HomepageController@index')->middleware('guest');
+Route::get('/', 'HomepageController@index')->name('homepage');
 
 Auth::routes(['verify' => true]);
 Route::middleware(['auth'])->group(function () {
@@ -21,7 +21,9 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/me/aid', 'UserAidController@index')->name('me.aid');
     Route::get('/me', 'UserController@show')->name('me');
+    Route::patch('/me', 'UserController@update')->name('me.profile.update');
     Route::patch('/me/payments', 'UserPaymentsController@update')->name('me.payments.update');
+    Route::patch('/me/password', 'UserPasswordController@update')->name('me.password.update');
 
     Route::view('/aid', 'aid.create')->name('aid.create');
     Route::post('/aid', 'AidController@store')->name('aid.store');

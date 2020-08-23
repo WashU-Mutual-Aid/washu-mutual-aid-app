@@ -17,8 +17,8 @@ class PaymentProfile extends Model
     protected static function booted()
     {
         static::saving(function ($profile) {
-            if (! Str::startsWith($profile->username, '@')) {
-                $profile->username = '@'.$profile->username;
+            if (Str::startsWith($profile->username, '@')) {
+                $profile->username = Str::replaceFirst('@', '', $profile->username);
             }
         });
 
